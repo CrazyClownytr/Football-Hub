@@ -22,5 +22,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+//Route::get('products/create', [PhotoController::class, 'create'])
+//    ->middleware('auth')
+//    ->name('products.create');
+
+
 Route::resource('photos', PhotoController::class);
 require __DIR__ . '/auth.php';

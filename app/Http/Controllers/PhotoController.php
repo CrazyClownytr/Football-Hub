@@ -21,26 +21,38 @@ class PhotoController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(): View // IS GET
     {
-        //
+        //dd(vars: "Get Request van create");
+        return view('photos.create'); //nieuwe view maken
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request) // IS POST, DUS PAS NA SUBMIT
     {
-        //
+        $photo = new Photo();
+        //  $request->validate(); valideren, komende les wel
+
+        $photo->title = $request->input('title');
+        $photo->description = $request->input('description');
+        // $photo->image ='default url';
+        //  $photo->user_id = auth()->user()->id;
+
+        $photo->save();
+
+        //terug gaan van waar je vandaan komt
+        return redirect()->route('photos.index');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Photo $photos): View
+    public function show(Photo $photo): View //enkelvoud, check chatgpt om te connecten met view
     {
         return view('photos.show', [
-            'photos' => $photos
+            'photo' => $photo
         ]);
 
     }
