@@ -9,6 +9,10 @@ use Illuminate\Support\Facades\Route;
 //    return view('welcome');
 //});
 
+Route::get('/home', function () {
+    return view('profile.home');
+})->name('home');
+
 Route::get('/', [HomeController::class, 'index']);
 
 
@@ -22,9 +26,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-//Route::get('products/create', [PhotoController::class, 'create'])
-//    ->middleware('auth')
-//    ->name('products.create');
+//je moet ingelogd zijn to create
+Route::get('products/create', [PhotoController::class, 'create'])
+    ->middleware('auth')
+    ->name('products.create');
 
 
 Route::resource('photos', PhotoController::class);

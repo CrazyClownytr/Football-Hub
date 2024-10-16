@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Photo;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -14,8 +15,11 @@ class PhotoController extends Controller
     public function index(): View
     {
         $photos = Photo::all();
+
+
         return view('photos.index', compact('photos')
         );
+
     }
 
     /**
@@ -23,8 +27,13 @@ class PhotoController extends Controller
      */
     public function create(): View // IS GET
     {
+
+        $categories = Category::all();
+
         //dd(vars: "Get Request van create");
-        return view('photos.create'); //nieuwe view maken
+        return view('photos.create', [
+            'categories' => $categories
+        ]); //nieuwe view maken
     }
 
     /**

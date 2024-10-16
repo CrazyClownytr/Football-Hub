@@ -9,6 +9,9 @@
 </head>
 <body>
 <h2>welcome to my home page</h2>
+<a href="{{route('photos.index')}}">View all Uploads</a>
+<a href="{{route('dashboard')}}">Log in</a>
+<a href="{{route('photos.create')}}">Create photo</a>
 <p>hallo</p>
 </body>
 </html>
