@@ -46,6 +46,8 @@ class PhotoController extends Controller
 
         $photo->title = $request->input('title');
         $photo->description = $request->input('description');
+        $photo->category_id = $request->input('category_id');
+
         // $photo->image ='default url';
         //  $photo->user_id = auth()->user()->id;
 

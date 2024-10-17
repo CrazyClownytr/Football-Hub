@@ -10,6 +10,14 @@
         <x-input-label for="description">Description</x-input-label>
         <textarea name="description" id="description"></textarea>
 
+        <x-input-label for="category_id">Category</x-input-label>
+        <select name="category_id" id="category_id" required>
+            <option value="">Select a category</option>
+            @foreach($categories as $category)
+                <option value="{{ $category->id }}">{{ $category->leagues }}</option>
+            @endforeach
+        </select>
+
         {{--        <button type="submit">Submit</button>--}}
         <x-primary-button type="submit">Submit</x-primary-button>
     </form>

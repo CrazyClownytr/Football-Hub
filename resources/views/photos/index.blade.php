@@ -5,7 +5,10 @@
         <x-photo-item :photo="$photo">
 
         </x-photo-item>
+        <p>Category: {{ $photo->category->leagues ?? 'No Category' }}</p>
     @endforeach
+
+
 </x-layout>
 
 
