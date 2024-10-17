@@ -6,6 +6,7 @@
         </x-photo-item>
         <p>Uploaded by: {{ $photo->user ? $photo->user->name : 'Unknown User' }}</p>
         <p>Category: {{ $photo->category->leagues ?? 'No Category' }}</p>
+        <a href="{{ route('photos.show', $photo) }}">Show Details</a>
     @endforeach
 
 

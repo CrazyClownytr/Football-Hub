@@ -1,18 +1,17 @@
 <x-layout>
-    <h1>Photos</h1>
-    @foreach($photos as $photo)
-        <x-photo-item :photo="$photo">
+    <h1>{{ $photo->title }}</h1>
+    <p>{{ $photo->description }}</p>
 
-        </x-photo-item>
-    @endforeach
+    <p>Uploaded by: {{ $photo->user ? $photo->user->name : 'Unknown User' }}</p>
+    <p>Category: {{ $photo->category ? $photo->category->leagues : 'No Category' }}</p>
 
-    {{--    delete--}}
-    {{--    <form action="{{route('photos.destroy', $photo)}}" method="post">--}}
-    {{--        @csrf--}}
-    {{--        @method('DELETE')--}}
-    {{--        <input type="submit" value="delete">--}}
+    {{-- Delete button --}}
+    <form action="{{ route('photos.destroy', $photo) }}" method="post">
+        @csrf
+        @method('DELETE')
+        <input type="submit" value="Delete">
+    </form>
 
-    {{--    </form>--}}
+    <a href="{{ route('photos.index') }}">Back to Photos List</a>
 </x-layout>
 
-//hier geen loop
