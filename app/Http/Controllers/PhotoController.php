@@ -14,13 +14,23 @@ class PhotoController extends Controller
      */
     public function index(): View
     {
-        $photos = Photo::all();
+        // $photos = Photo::all();
+        $photos = Photo::withTrashed()->get();
 
         return view('photos.index', compact('photos')
         );
 
 
     }
+
+    public function restore($id)
+    {
+        $photo = Photo::withTrashed()->find($id);
+        $photo->restore(); // Herstelt het record
+
+        return redirect()->route('photos.index')->with('success', 'Photo restored successfully!');
+    }
+
 
     /**
      * Show the form for creating a new resource.
@@ -97,8 +107,10 @@ class PhotoController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Photo $photos)
+    public function destroy(Photo $photo)
     {
-        //
+        // dd(request()->all()); // Controleer de inkomende request data
+        $photo->delete();
+        return redirect()->route('photos.index')->with('status', 'Photo deleted successfully');
     }
 }

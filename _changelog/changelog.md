@@ -14,21 +14,31 @@ ERD gemaakt
 alles commit van afgelopen dagen + opdrachten
 
 15-10-24:
-Models en bijbehorende controller en Photo tabel gemaakt,
-dummy data van de model gestuurd naar de view en werkt
+
+- Models en bijbehorende controller en Photo tabel gemaakt,
+- dummy data van de model gestuurd naar de view en werkt
 
 16-10-24:
-eerst create functie gedaan met store en form field zonder validatie,
-create pagina werkt,
-category table gemaakt
+
+- eerst create functie gedaan met store en form field zonder validatie,
+- create pagina werkt,
+- category table gemaakt
 
 17-10-24:
-details pagina gemaakt en werkt,
-category id toegevoegd aan fotos table en geplaatst in formfield,
-categories worden nu gekozen en opgeslagen in database.
-user id toegevoegd aan foto table, je kan nu alleen als ingelogde naar create page
+
+- details pagina gemaakt en werkt,
+- category id toegevoegd aan fotos table en geplaatst in formfield,
+- categories worden nu gekozen en opgeslagen in database.
+- user id toegevoegd aan foto table, je kan nu alleen als ingelogde naar create page
 
 18-10-24:
-fotos toevoegen en delete knop
+
+- fotos toevoegen is gelukt, wordt ook gesaved in database
+  en delete knop
+
+19-10-24:
+
+- filteren admin guest and user onderscheiden?
+- home page link directen naar index direct? dus '/' verwijst naaar index
 
 

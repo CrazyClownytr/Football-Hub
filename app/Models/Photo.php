@@ -5,9 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
 
 class Photo extends Model
 {
+
+    use softDeletes;
+
+    protected array $dates = ['deleted_at'];
 
     public function category(): BelongsTo
     {
@@ -18,6 +24,9 @@ class Photo extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+
+
 //    protected $table = 'photos';
 //    protected $fillable = [
 //        'title',

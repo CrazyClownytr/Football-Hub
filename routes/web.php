@@ -36,4 +36,9 @@ Route::get('/photos', [PhotoController::class, 'index'])->name('photos.index');
 //    ->middleware('auth')
 //    ->name('products.create');
 
+// restore deleted pics
+Route::post('/photos/{photo}/restore', [PhotoController::class, 'restore'])->name('photos.restore');
+
+
 require __DIR__ . '/auth.php';
+

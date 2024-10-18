@@ -10,11 +10,23 @@
     @endif
 
     {{-- Delete button --}}
-    <form action="{{ route('photos.destroy', $photo) }}" method="post">
-        @csrf
-        @method('DELETE')
-        <input type="submit" value="Delete">
-    </form>
+    {{-- Restore or Delete button --}}
+    @if ($photo->trashed())
+        <!-- Controleren of de foto soft deleted is -->
+        <form action="{{ route('photos.restore', $photo) }}" method="post">
+            @csrf
+            <input type="submit" value="Restore">
+        </form>
+    @else
+        {{-- Delete button --}}
+        <form action="{{ route('photos.destroy', $photo) }}" method="post"
+              onsubmit="return confirm('Are you sure you want to delete this photo?')">
+            @csrf
+            @method('DELETE')
+            <input type="submit" value="Delete">
+        </form>
+    @endif
+
 
     <a href="{{ route('photos.index') }}">Back to Photos List</a>
 </x-layout>
