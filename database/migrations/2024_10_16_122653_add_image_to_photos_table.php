@@ -11,8 +11,7 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::table('photos', function (Blueprint $table) {
-            $table->text('image')->default('resources/images');
-
+            $table->string('image')->nullable()->after('description');
         });
     }
 

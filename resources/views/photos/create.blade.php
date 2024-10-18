@@ -1,5 +1,5 @@
 <x-app-layout>
-    <form action="{{route('photos.store')}}" method="post">
+    <form action="{{route('photos.store')}}" method="post" enctype="multipart/form-data">
         @csrf
         {{--        <label for="name">Name</label>--}}
         {{--        <input id="name" name="title">
@@ -17,6 +17,9 @@
                 <option value="{{ $category->id }}">{{ $category->leagues }}</option>
             @endforeach
         </select>
+
+        <x-input-label for="image">Image</x-input-label>
+        <input type="file" name="image" id="image" accept="image/*">
 
         {{--        <button type="submit">Submit</button>--}}
         <x-primary-button type="submit">Submit</x-primary-button>
