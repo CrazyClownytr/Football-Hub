@@ -52,7 +52,17 @@ class PhotoController extends Controller
     public function store(Request $request) // IS POST, DUS PAS NA SUBMIT
     {
         $photo = new Photo();
-        //  $request->validate(); valideren, komende les wel
+        $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+            'category_id' => 'required|exists:categories,id',
+            'image' => 'required|file|image|max:2048'
+        ], [
+            'title.required' => 'You must fill in the title',
+            'description.required' => 'You must fill in the description',
+            'category_id.required' => 'You must choose a league',
+        ]); //valideren, komende les wel
+
 
         $photo->title = $request->input('title');
         $photo->description = $request->input('description');

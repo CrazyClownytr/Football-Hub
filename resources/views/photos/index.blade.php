@@ -3,10 +3,10 @@
     <a href="{{ route('photos.create') }}">Create photo</a>
 
     @foreach($photos as $photo)
-        
+
         @if ($photo->trashed())
             <!-- Als de foto soft deleted is -->
-            <p>{{ $photo->title }} - This photo has been deleted.</p>
+            <p>{{ $photo->title }} - This post has been deleted.</p>
             <form action="{{ route('photos.restore', $photo) }}" method="post">
                 @csrf
                 <input type="submit" value="Restore">

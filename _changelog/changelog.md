@@ -36,9 +36,15 @@ alles commit van afgelopen dagen + opdrachten
 - fotos toevoegen is gelukt, wordt ook gesaved in database
   en delete knop
 
-19-10-24:
+21-10-24:
 
-- filteren admin guest and user onderscheiden?
-- home page link directen naar index direct? dus '/' verwijst naaar index
+- authentication
+- admin guest and user onderscheiden?
+- bijbehorende naam van product bij details link geven
+
+22-10-24:
+
+- edit pagina //{{old 'title', $photo=>title}} bij value?
+- filteren
 
 

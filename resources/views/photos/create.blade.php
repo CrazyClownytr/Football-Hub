@@ -5,16 +5,27 @@
         {{--        <input id="name" name="title">
         vraag waar van de form moet corresponderen met database--}}
         <x-input-label for="title">Title</x-input-label>
-        <x-text-input name="title" id="title"></x-text-input>
-
+        <x-text-input name="title" id="title" value="{{old('title')}}"></x-text-input>
+        @error('title')
+        <span>
+         {{$message}}
+        </span>
+        @enderror
         <x-input-label for="description">Description</x-input-label>
-        <textarea name="description" id="description"></textarea>
-
+        <textarea name="description" id="description">{{ old('description') }}</textarea>
+        @error('description')
+        <span>
+         {{$message}}
+        </span>
+        @enderror
         <x-input-label for="category_id">Category</x-input-label>
         <select name="category_id" id="category_id" required>
             <option value="">Select a category</option>
             @foreach($categories as $category)
-                <option value="{{ $category->id }}">{{ $category->leagues }}</option>
+                <option value="{{ $category->id }}"
+                    {{ old('category_id') == $category->id ? 'selected' : '' }}>
+                    {{ $category->leagues }}
+                </option>
             @endforeach
         </select>
 
