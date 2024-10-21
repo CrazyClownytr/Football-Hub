@@ -38,7 +38,7 @@ alles commit van afgelopen dagen + opdrachten
 
 21-10-24:
 
-- authentication
+- authentication toegevoegd
 - admin guest and user onderscheiden?
 - bijbehorende naam van product bij details link geven
 

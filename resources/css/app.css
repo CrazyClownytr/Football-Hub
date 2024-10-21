@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/*index*/
+.photo-item {
+    border: 1px solid #ccc;
+    padding: 16px;
+    margin-bottom: 16px;
+    border-radius: 8px; /* Optional: adds rounded corners */
+    background-color: #f9f9f9; /* Optional: adds a background color */
+    width: 50%;
+}
