@@ -39,6 +39,10 @@ Route::get('/photos', [PhotoController::class, 'index'])->name('photos.index');
 // restore deleted pics
 Route::post('/photos/{photo}/restore', [PhotoController::class, 'restore'])->name('photos.restore');
 
+// edit and update
+// In routes/web.php
+Route::get('/photos/{photo}/edit', [PhotoController::class, 'edit'])->name('photos.edit');
+Route::put('/photos/{photo}', [PhotoController::class, 'update'])->name('photos.update');
 
 require __DIR__ . '/auth.php';
 

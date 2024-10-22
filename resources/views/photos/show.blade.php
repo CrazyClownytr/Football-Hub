@@ -26,7 +26,7 @@
             <input type="submit" value="Delete">
         </form>
     @endif
-
+    <a href="{{ route('photos.edit', $photo) }}">Edit Your Post</a>.
 
     <a href="{{ route('photos.index') }}">Back to Photos List</a>
 </x-layout>

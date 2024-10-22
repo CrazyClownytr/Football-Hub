@@ -2,7 +2,7 @@
 
 ik heb een **tekst**
 
-![alt text](./)
+[//]: # (![alt text]&#40;./&#41;)
 
 12-10-24:
 Thema, Userstories, MoSCoW en planning gemaakt
@@ -39,12 +39,12 @@ alles commit van afgelopen dagen + opdrachten
 21-10-24:
 
 - authentication toegevoegd
-- admin guest and user onderscheiden?
 - bijbehorende naam van product bij details link geven
 
 22-10-24:
 
 - edit pagina //{{old 'title', $photo=>title}} bij value?
 - filteren
+- admin guest and user onderscheiden?
 
 

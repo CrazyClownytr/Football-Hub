@@ -97,18 +97,46 @@ class PhotoController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Photo $photos)
+    public function edit(Photo $photo)
     {
-        //
+        $categories = Category::all(); // Haal de categorieën op voor de dropdown
+
+        return view('photos.edit', [
+            'photo' => $photo,
+            'categories' => $categories
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Photo $photos)
+    public function update(Request $request, Photo $photo)
     {
-        //
+        $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+            'category_id' => 'required|exists:categories,id',
+            'image' => 'nullable|file|image|max:2048' // Optioneel veld voor afbeelding
+        ]);
+
+        // Update de attributen van de foto
+        $photo->title = $request->input('title');
+        $photo->description = $request->input('description');
+        $photo->category_id = $request->input('category_id');
+
+        // Als er een nieuwe afbeelding is geüpload, werk dan het pad bij
+        if ($request->hasFile('image')) {
+            $nameOfFile = $request->file('image')->storePublicly('folder-name', 'public');
+            $photo->image = $nameOfFile;
+        }
+
+        // Sla de wijzigingen op
+        $photo->save();
+
+        // Redirect naar de indexpagina met een succesbericht
+        return redirect()->route('photos.index')->with('success', 'Photo updated successfully!');
     }
+
 
     /**
      * Remove the specified resource from storage.
