@@ -5,6 +5,10 @@
     @foreach($photos as $photo)
         <div class="photo-item">
 
+            @if ($photo->image)
+                <img src="{{asset('storage/' . $photo->image)}}" alt="{{$photo->title}}">
+            @endif
+
             @if ($photo->trashed())
                 <!-- Als de foto soft deleted is -->
                 <p>{{ $photo->title }} - This post has been deleted.</p>
@@ -21,9 +25,6 @@
                 <a href="{{ route('photos.show', $photo) }}">Show details of {{$photo->title}}</a>
             @endif
 
-            @if ($photo->image)
-                <img src="{{asset('storage/' . $photo->image)}}" alt="{{$photo->title}}">
-            @endif
 
         </div>
     @endforeach

@@ -34,7 +34,7 @@ alles commit van afgelopen dagen + opdrachten
 18-10-24:
 
 - fotos toevoegen is gelukt, wordt ook gesaved in database
-  en delete knop
+  en deleteknop
 
 21-10-24:
 
@@ -43,8 +43,8 @@ alles commit van afgelopen dagen + opdrachten
 
 22-10-24:
 
-- edit pagina //{{old 'title', $photo=>title}} bij value?
-- filteren
+- edit pagina toegevoegd //{{old 'title', $photo=>title}} bij value?
 - admin guest and user onderscheiden?
+- filteren
 
 
