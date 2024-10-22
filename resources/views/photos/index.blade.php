@@ -6,25 +6,28 @@
         <div class="photo-item">
 
             @if ($photo->image)
-                <img src="{{asset('storage/' . $photo->image)}}" alt="{{$photo->title}}">
+                <img src="{{ asset('storage/' . $photo->image) }}" alt="{{ $photo->title }}">
             @endif
 
             @if ($photo->trashed())
-                <!-- Als de foto soft deleted is -->
+                <!-- If the photo is soft deleted -->
                 <p>{{ $photo->title }} - This post has been deleted.</p>
-                <form action="{{ route('photos.restore', $photo) }}" method="post">
-                    @csrf
-                    <input type="submit" value="Restore">
-                </form>
-            @else
-                <!-- Normale weergave voor niet-verwijderde foto's -->
-                <h2>{{ $photo->title }}</h2>
 
+                @if (auth()->check() && auth()->user()->isAdmin())
+                    <!-- Admins can see the restore button -->
+                    <form action="{{ route('photos.restore', $photo) }}" method="post">
+                        @csrf
+                        <input type="submit" value="Restore">
+                    </form>
+                @endif
+
+            @else
+                <!-- Normal display for non-deleted photos -->
+                <h2>{{ $photo->title }}</h2>
                 <p>Uploaded by: {{ $photo->user ? $photo->user->name : 'Unknown User' }}</p>
                 <p>Category: {{ $photo->category->leagues ?? 'No Category' }}</p>
-                <a href="{{ route('photos.show', $photo) }}">Show details of {{$photo->title}}</a>
+                <a href="{{ route('photos.show', $photo) }}">Show details of {{ $photo->title }}</a>
             @endif
-
 
         </div>
     @endforeach

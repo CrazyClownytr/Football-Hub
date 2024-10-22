@@ -44,7 +44,12 @@ alles commit van afgelopen dagen + opdrachten
 22-10-24:
 
 - edit pagina toegevoegd //{{old 'title', $photo=>title}} bij value?
-- admin guest and user onderscheiden?
-- filteren
+- admin guest and user onderscheiden IS GELUKT
+- admin page toegevoegd en alleen zichtbaar door admin
+
+23-10-24:
+
+- fileren
+- amount of likes before ability to post
 
 

@@ -12,7 +12,16 @@
 <a href="{{route('photos.index')}}">View all Uploads</a>
 <a href="{{route('dashboard')}}">Log in</a>
 <a href="{{route('photos.create')}}">Create photo</a>
+@if(auth()->check() && auth()->user()->isAdmin())
+    <a href="{{ route('admin.admin-index') }}" class="btn btn-primary">Admin page</a>
+@endif
+
+<p>Gebruikersrol: {{ auth()->check() ? auth()->user()->role : 'Niet ingelogd' }}</p>
+
 <p>hallo</p>
 </body>
 </html>
+
+
+
 

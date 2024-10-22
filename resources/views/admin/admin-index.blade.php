@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>admin page</title>
+</head>
+
+<nav>
+    <a href="{{route('photos.index')}}">View all Uploads</a>
+    <a href="{{route('dashboard')}}">Log in</a>
+    <a href="{{route('photos.create')}}">Create photo</a>
+</nav>
+<body>
+<h2>welcome to admin page</h2>
+<main>
+</main>
+</body>
+</html>
+

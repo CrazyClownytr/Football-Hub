@@ -1,4 +1,5 @@
 <x-layout>
+
     <h1>{{ $photo->title }}</h1>
     <p>{{ $photo->description }}</p>
 

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\ProfileController;
@@ -40,9 +41,13 @@ Route::get('/photos', [PhotoController::class, 'index'])->name('photos.index');
 Route::post('/photos/{photo}/restore', [PhotoController::class, 'restore'])->name('photos.restore');
 
 // edit and update
-// In routes/web.php
 Route::get('/photos/{photo}/edit', [PhotoController::class, 'edit'])->name('photos.edit');
 Route::put('/photos/{photo}', [PhotoController::class, 'update'])->name('photos.update');
+
+//admin role pages
+Route::middleware('auth')->group(function () {
+    Route::get('/admin/admin-index', [AdminController::class, 'manageUsers'])->name('admin.admin-index');
+});
 
 require __DIR__ . '/auth.php';
 

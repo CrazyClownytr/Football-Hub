@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',
     ];
 
     /**
@@ -45,4 +46,11 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    // Voeg deze functie toe
+    public function isAdmin(): bool
+    {
+        return $this->role === 'admin'; // Controleer of de rol 'admin' is
+    }
+
 }
