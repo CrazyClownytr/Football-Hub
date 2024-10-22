@@ -16,14 +16,15 @@
                 <!-- Normale weergave voor niet-verwijderde foto's -->
                 <h2>{{ $photo->title }}</h2>
 
-                @if ($photo->image)
-                    <img src="{{ asset($photo->image) }}" alt="{{ $photo->title }}" style="width: 150px; height: auto;">
-                @endif
-
                 <p>Uploaded by: {{ $photo->user ? $photo->user->name : 'Unknown User' }}</p>
                 <p>Category: {{ $photo->category->leagues ?? 'No Category' }}</p>
                 <a href="{{ route('photos.show', $photo) }}">Show details of {{$photo->title}}</a>
             @endif
+
+            @if ($photo->image)
+                <img src="{{asset('storage/' . $photo->image)}}" alt="{{$photo->title}}">
+            @endif
+
         </div>
     @endforeach
 </x-layout>

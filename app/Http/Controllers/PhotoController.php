@@ -73,16 +73,12 @@ class PhotoController extends Controller
         //  $photo->user_id = auth()->user()->id;
 
         if ($request->hasFile('image')) {
-            $fileName = time() . '_' . $request->file('image')->getClientOriginalName();
-            $filePath = 'images/' . $fileName; // Zet het bestandspad in de 'images' map onder public
-
-            // Verplaats het bestand naar de public/images map
-            $request->file('image')->move(public_path('images'), $fileName);
-
-            $photo->image = $filePath; // Opslaan van het bestandspad in de database
+            $nameOfFile = $request->file('image')->storePublicly('images', 'public');
+            $photo->image = $nameOfFile; // Opslaan van het pad naar de afbeelding in de database
         }
-        $photo->save();
 
+        // Opslaan van het Photo-model in de database
+        $photo->save();
         //terug gaan van waar je vandaan komt
         return redirect()->route('photos.index');
     }
