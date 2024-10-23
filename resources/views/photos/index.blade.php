@@ -16,6 +16,13 @@
         <button type="submit">Filter</button>
     </form>
 
+    <form method="GET" action="{{ route('photos.index') }}">
+        <label for="search">Search Photos:</label>
+        <input type="text" name="search" id="search" value="{{ request('search') }}"
+               placeholder="Search by title or description">
+        <button type="submit">Search</button>
+    </form>
+
     @foreach($photos as $photo)
         <div class="photo-item">
             @if ($photo->image)

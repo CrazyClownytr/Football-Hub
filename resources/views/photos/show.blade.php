@@ -1,4 +1,5 @@
 <x-layout>
+
     <h1>{{ $photo->title }}</h1>
     <p>{{ $photo->description }}</p>
 
@@ -6,7 +7,8 @@
     <p>Category: {{ $photo->category ? $photo->category->leagues : 'No Category' }}</p>
 
     @if ($photo->image)
-        <img src="{{ asset($photo->image) }}" alt="{{ $photo->title }}" style="width: 150px; height: auto;">
+        <img src="{{ asset('storage/' . $photo->image) }}" alt="{{ $photo->title }}"
+             style="width: 500px; height: auto;">
     @endif
 
     {{-- Delete button --}}
@@ -21,4 +23,5 @@
     <a href="{{ route('photos.edit', $photo) }}">Edit Your Post</a>.
 
     <a href="{{ route('photos.index') }}">Back to Photos List</a>
+    
 </x-layout>

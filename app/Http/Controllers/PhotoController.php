@@ -16,6 +16,9 @@ class PhotoController extends Controller
     {
 // Haal de categorie_id op uit de request, als die bestaat
         $categoryId = $request->get('category');
+        $searchTerm = $request->get('search');
+
+        $query = Photo::query();
 
         // Haal alle categorieën op voor de filteropties
         $categories = Category::all();
@@ -27,6 +30,17 @@ class PhotoController extends Controller
             // Haal alle foto's op als er geen categorie is geselecteerd
             $photos = Photo::all();
         }
+
+
+        // Als er een zoekterm is, filter dan op titel en beschrijving
+        if ($searchTerm) {
+            $query->where(function ($query) use ($searchTerm) {
+                $query->where('title', 'LIKE', "%{$searchTerm}%")
+                    ->orWhere('description', 'LIKE', "%{$searchTerm}%");
+            });
+        }
+
+        $photos = $query->get();
 
         // Retourneer de view met de foto's en categorieën
         return view('photos.index', compact('photos', 'categories'));
@@ -98,10 +112,7 @@ class PhotoController extends Controller
      */
     public function show(Photo $photo): View //enkelvoud, check chatgpt om te connecten met view
     {
-        return view('photos.show', [
-            'photo' => $photo
-        ]);
-
+        return view('photos.show', compact('photo'));
     }
 
     /**
