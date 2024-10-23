@@ -43,13 +43,17 @@ alles commit van afgelopen dagen + opdrachten
 
 22-10-24:
 
-- edit pagina toegevoegd //{{old 'title', $photo=>title}} bij value?
-- admin guest and user onderscheiden IS GELUKT
+- edit pagina toegevoegd //{{old 'title', $photo→title}} bij value?
+- admin, guest and user onderscheiden IS GELUKT
 - admin page toegevoegd en alleen zichtbaar door admin
 
 23-10-24:
 
+- zoek balk
 - fileren
 - amount of likes before ability to post
+- veranderen dat allen gebruikers hun bijbehorende post kunnen bewerken of deleten
+- admins kunnen dit ook, maar dus van iedereen^
 
+[//]: # (index pagina is GET, filteren is GET, dingen ophalen is GET)
 

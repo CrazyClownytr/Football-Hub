@@ -7,5 +7,19 @@ use Illuminate\Database\Eloquent\Model;
 
 class Category extends Model
 {
-    use HasFactory;
+   
+
+    // Stel de table naam in, als deze niet de standaard naam volgt
+    protected $table = 'categories';
+
+    // De attributen die massaal toewijsbaar zijn
+    protected $fillable = [
+        'leagues', // Dit is het veld dat de categorie beschrijft
+    ];
+
+    // Relatie met foto's
+    public function photos()
+    {
+        return $this->hasMany(Photo::class);
+    }
 }
