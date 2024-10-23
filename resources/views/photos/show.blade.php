@@ -1,34 +1,24 @@
 <x-layout>
-
     <h1>{{ $photo->title }}</h1>
     <p>{{ $photo->description }}</p>
 
     <p>Uploaded by: {{ $photo->user ? $photo->user->name : 'Unknown User' }}</p>
     <p>Category: {{ $photo->category ? $photo->category->leagues : 'No Category' }}</p>
+
     @if ($photo->image)
-        <img src="{{ asset($photo->image) }}" alt="{{ $photo->title }}"
-             style="width: 150px; height: auto;">
+        <img src="{{ asset($photo->image) }}" alt="{{ $photo->title }}" style="width: 150px; height: auto;">
     @endif
 
     {{-- Delete button --}}
-    {{-- Restore or Delete button --}}
-    @if ($photo->trashed())
-        <!-- Controleren of de foto soft deleted is -->
-        <form action="{{ route('photos.restore', $photo) }}" method="post">
-            @csrf
-            <input type="submit" value="Restore">
-        </form>
-    @else
-        {{-- Delete button --}}
-        <form action="{{ route('photos.destroy', $photo) }}" method="post"
-              onsubmit="return confirm('Are you sure you want to delete this photo?')">
-            @csrf
-            @method('DELETE')
-            <input type="submit" value="Delete">
-        </form>
-    @endif
+    <form action="{{ route('photos.destroy', $photo) }}" method="post"
+          onsubmit="return confirm('Are you sure you want to delete this photo?')">
+        @csrf
+        @method('DELETE')
+        <input type="submit" value="Delete">
+    </form>
+
+    {{-- Edit button --}}
     <a href="{{ route('photos.edit', $photo) }}">Edit Your Post</a>.
 
     <a href="{{ route('photos.index') }}">Back to Photos List</a>
 </x-layout>
-

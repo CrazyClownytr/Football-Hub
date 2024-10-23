@@ -49,11 +49,20 @@ alles commit van afgelopen dagen + opdrachten
 
 23-10-24:
 
+- fileren is gelukt met categories
+- admins view de soft deleted posts and can restore them
+- admins can view alle posts and can edit and delete them
+
+24-10-24:
+
 - zoek balk
-- fileren
 - amount of likes before ability to post
 - veranderen dat allen gebruikers hun bijbehorende post kunnen bewerken of deleten
 - admins kunnen dit ook, maar dus van iedereen^
+
+25-10-24:
+
+- actief niet actief tonen aan een foto, similar toe soft delete
 
 [//]: # (index pagina is GET, filteren is GET, dingen ophalen is GET)
 

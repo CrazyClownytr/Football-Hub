@@ -37,8 +37,8 @@ Route::get('/photos', [PhotoController::class, 'index'])->name('photos.index');
 //    ->middleware('auth')
 //    ->name('products.create');
 
-// restore deleted pics
-//Route::post('/photos/{photo}/restore', [PhotoController::class, 'restore'])->name('photos.restore');
+//restore deleted pics
+Route::post('/photos/{photo}/restore', [PhotoController::class, 'restore'])->name('photos.restore');
 
 // edit and update
 Route::get('/photos/{photo}/edit', [PhotoController::class, 'edit'])->name('photos.edit');
@@ -47,10 +47,14 @@ Route::put('/photos/{photo}', [PhotoController::class, 'update'])->name('photos.
 //admin role pages
 Route::middleware('auth')->group(function () {
     Route::get('/admin/admin-index', [AdminController::class, 'manageUsers'])->name('admin.admin-index');
+
     // Route voor het beheren van foto's
-    Route::get('/admin/photos', [AdminController::class, 'adminPhotosIndex'])->name('admin.photos.index');
-    Route::post('/admin/photos/{photo}/restore', [AdminController::class, 'restorePhoto'])->name('photos.show');
+    Route::get('/admin/photos', [AdminController::class, 'adminPhotosIndex'])->name('admin.photos-index');
+
+    // Route voor het herstellen van foto's
+    Route::post('/admin/photos/{id}/restore', [AdminController::class, 'restorePhoto'])->name('photos.restore');
 });
+
 
 require __DIR__ . '/auth.php';
 

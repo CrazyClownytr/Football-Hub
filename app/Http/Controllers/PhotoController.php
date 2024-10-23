@@ -12,24 +12,34 @@ class PhotoController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(): View
+    public function index(Request $request): View
     {
-        // $photos = Photo::all();
-        $photos = Photo::withTrashed()->get();
+// Haal de categorie_id op uit de request, als die bestaat
+        $categoryId = $request->get('category');
 
-        return view('photos.index', compact('photos')
-        );
+        // Haal alle categorieën op voor de filteropties
+        $categories = Category::all();
 
+        if ($categoryId) {
+            // Haal foto's op die bij de geselecteerde categorie horen
+            $photos = Photo::where('category_id', $categoryId)->get();
+        } else {
+            // Haal alle foto's op als er geen categorie is geselecteerd
+            $photos = Photo::all();
+        }
+
+        // Retourneer de view met de foto's en categorieën
+        return view('photos.index', compact('photos', 'categories'));
 
     }
 
-    public function restore($id)
-    {
-        $photo = Photo::withTrashed()->find($id);
-        $photo->restore(); // Herstelt het record
-
-        return redirect()->route('photos.index')->with('success', 'Photo restored successfully!');
-    }
+//    public function restore($id)
+//    {
+//        $photo = Photo::withTrashed()->find($id);
+//        $photo->restore();
+//
+//        return redirect()->route('photos.index')->with('success', 'Photo restored successfully!');
+//    }
 
 
     /**

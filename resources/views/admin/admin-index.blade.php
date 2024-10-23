@@ -12,6 +12,7 @@
     <a href="{{route('photos.index')}}">View all Uploads</a>
     <a href="{{route('dashboard')}}">Log in</a>
     <a href="{{route('photos.create')}}">Create photo</a>
+    <a href="{{route('admin.photos-index')}}">Restore posts</a>
 </nav>
 <body>
 <h2>welcome to admin page</h2>
