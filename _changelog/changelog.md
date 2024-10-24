@@ -56,6 +56,7 @@ alles commit van afgelopen dagen + opdrachten
 
 24-10-24:
 
+- likes toevoegen
 - amount of likes before ability to post
 - veranderen dat allen gebruikers hun bijbehorende post kunnen bewerken of deleten
 - admins kunnen dit ook, maar dus van iedereen^
@@ -65,7 +66,11 @@ alles commit van afgelopen dagen + opdrachten
 
 - pic validatie
 - gebruiker kan eigen gegevens aanpassen?
-- actief niet actief tonen aan een foto, similar toe soft delete
+- actief niet actief tonen aan een foto, similar to soft delete
+
+26-10-24
+
+- checken waar links bijgevoegd kunnen worden
 
 [//]: # (index pagina is GET, filteren is GET, dingen ophalen is GET)
 
