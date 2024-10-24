@@ -194,6 +194,11 @@ class PhotoController extends Controller
 
     public function like($photoId)
     {
+        if (!auth()->check()) {
+            // Als de gebruiker niet ingelogd is, doorsturen naar de login-pagina
+            return redirect()->route('login')->with('message', 'You need to log in to like a photo.');
+        }
+        
         $photo = Photo::findOrFail($photoId);
         $user = auth()->user();
 

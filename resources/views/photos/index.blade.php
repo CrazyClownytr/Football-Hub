@@ -1,6 +1,15 @@
 <x-layout>
     <h1>Photos</h1>
     <a href="{{ route('photos.create') }}">Create photo</a>
+
+    {{--//non ingelogde gebruiker--}}
+    @if(session('message'))
+        <div class="alert alert-warning">
+            {{ session('message') }}
+        </div>
+    @endif
+
+    {{--    //like updates--}}
     @if (session('message'))
         <div class="alert alert-warning">
             {{ session('message') }}
