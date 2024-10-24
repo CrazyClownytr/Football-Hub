@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Photo;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use function Laravel\Prompts\error;
 
 class PhotoController extends Controller
 {
@@ -120,6 +121,11 @@ class PhotoController extends Controller
      */
     public function edit(Photo $photo)
     {
+
+        if (auth()->id() !== $photo->user_id) {
+            abort(403, 'you do not have permission to edit this post');
+        }
+
         $categories = Category::all(); // Haal de categorieën op voor de dropdown
 
         return view('photos.edit', [
@@ -133,6 +139,11 @@ class PhotoController extends Controller
      */
     public function update(Request $request, Photo $photo)
     {
+
+        if (auth()->id() !== $photo->user_id) {
+            abort(403, 'you do not have permission to update this post');
+        }
+
         $request->validate([
             'title' => 'required',
             'description' => 'required',
@@ -144,6 +155,7 @@ class PhotoController extends Controller
         $photo->title = $request->input('title');
         $photo->description = $request->input('description');
         $photo->category_id = $request->input('category_id');
+
 
         // Als er een nieuwe afbeelding is geüpload, werk dan het pad bij
         if ($request->hasFile('image')) {
