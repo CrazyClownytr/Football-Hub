@@ -55,6 +55,9 @@ Route::middleware('auth')->group(function () {
     Route::post('/admin/photos/{id}/restore', [AdminController::class, 'restorePhoto'])->name('photos.restore');
 });
 
+//likes unlikes
+Route::post('/photos/{photo}/like', [PhotoController::class, 'like'])->name('photos.like');
+Route::delete('/photos/{photo}/unlike', [PhotoController::class, 'unlike'])->name('photos.unlike');
 
 require __DIR__ . '/auth.php';
 

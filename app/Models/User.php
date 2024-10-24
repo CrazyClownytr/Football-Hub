@@ -53,4 +53,10 @@ class User extends Authenticatable
         return $this->role === 'admin'; // Controleer of de rol 'admin' is
     }
 
+    public function likes()
+    {
+        return $this->hasMany(Like::class);
+    }
+
+    
 }

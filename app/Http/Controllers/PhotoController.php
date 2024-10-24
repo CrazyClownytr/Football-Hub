@@ -60,10 +60,18 @@ class PhotoController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create(): View // IS GET
+    public function create() //: View // IS GET
     {
 
         $categories = Category::all();
+
+        $user = auth()->user();
+
+        // Controleer of de gebruiker minstens 5 likes heeft geplaatst
+        if ($user->likes()->count() < 5) {
+            return redirect()->back()->with('message', 'You need to like at least 5 photos before creating a new post.');
+        }
+
 
         //dd(vars: "Get Request van create");
         return view('photos.create', [
@@ -183,4 +191,34 @@ class PhotoController extends Controller
         $photo->delete();
         return redirect()->route('photos.index')->with('status', 'Photo deleted successfully');
     }
+
+    public function like($photoId)
+    {
+        $photo = Photo::findOrFail($photoId);
+        $user = auth()->user();
+
+        // Check of de gebruiker de foto al heeft geliked
+        if ($photo->likes()->where('user_id', $user->id)->exists()) {
+            return redirect()->back()->with('message', 'You already liked this photo.');
+        }
+
+        // Voeg een like toe
+        $photo->likes()->create([
+            'user_id' => $user->id,
+        ]);
+
+        return redirect()->back()->with('message', 'Photo liked successfully.');
+    }
+
+    public function unlike($photoId)
+    {
+        $photo = Photo::findOrFail($photoId);
+        $user = auth()->user();
+
+        // Verwijder de like
+        $photo->likes()->where('user_id', $user->id)->delete();
+
+        return redirect()->back()->with('message', 'Photo unliked successfully.');
+    }
+
 }
