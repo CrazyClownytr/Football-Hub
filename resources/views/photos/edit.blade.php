@@ -42,7 +42,7 @@
             <span>{{ $message }}</span>
             @enderror
 
-            <x-primary-button type="submit">Update Photo</x-primary-button>
+            <x-primary-button type="submit">Update Post</x-primary-button>
         </form>
     @endif
 </x-app-layout>

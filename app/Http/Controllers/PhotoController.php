@@ -177,6 +177,9 @@ class PhotoController extends Controller
     public function destroy(Photo $photo)
     {
         // dd(request()->all()); // Controleer de inkomende request data
+        if (auth()->id() !== $photo->user_id) {
+            abort(403, 'you do not have permission to delete this post');
+        }
         $photo->delete();
         return redirect()->route('photos.index')->with('status', 'Photo deleted successfully');
     }
