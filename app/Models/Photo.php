@@ -13,6 +13,20 @@ class Photo extends Model
 
     use softDeletes;
 
+    protected $fillable = ['title', 'description', 'path', 'status']; // Voeg hier andere velden toe die je wilt invullen.
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        // Bij het ophalen van foto's
+        static::retrieved(function ($photo) {
+            if ($photo->deleted_at) {
+                $photo->status = 'inactive';
+            }
+        });
+    }
+    
     protected array $dates = ['deleted_at'];
 
     public function category(): BelongsTo

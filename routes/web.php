@@ -59,5 +59,10 @@ Route::middleware('auth')->group(function () {
 Route::post('/photos/{photo}/like', [PhotoController::class, 'like'])->name('photos.like');
 Route::delete('/photos/{photo}/unlike', [PhotoController::class, 'unlike'])->name('photos.unlike');
 
+// toggle status
+
+Route::post('/photos/{photo}/toggle-status', [PhotoController::class, 'toggleStatus'])->name('photos.toggle-status');
+
+
 require __DIR__ . '/auth.php';
 

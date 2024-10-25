@@ -15,25 +15,16 @@ class PhotoController extends Controller
      */
     public function index(Request $request): View
     {
-// Haal de categorie_id op uit de request, als die bestaat
         $categoryId = $request->get('category');
         $searchTerm = $request->get('search');
 
-        $query = Photo::query();
-
-        // Haal alle categorieën op voor de filteropties
-        $categories = Category::all();
+        $query = Photo::whereNull('deleted_at') // Alleen foto's zonder soft delete
+        ->where('status', 'active'); // Alleen actieve foto's
 
         if ($categoryId) {
-            // Haal foto's op die bij de geselecteerde categorie horen
-            $photos = Photo::where('category_id', $categoryId)->get();
-        } else {
-            // Haal alle foto's op als er geen categorie is geselecteerd
-            $photos = Photo::all();
+            $query->where('category_id', $categoryId);
         }
 
-
-        // Als er een zoekterm is, filter dan op titel en beschrijving
         if ($searchTerm) {
             $query->where(function ($query) use ($searchTerm) {
                 $query->where('title', 'LIKE', "%{$searchTerm}%")
@@ -41,12 +32,16 @@ class PhotoController extends Controller
             });
         }
 
+        // Haal de foto's op
         $photos = $query->get();
 
-        // Retourneer de view met de foto's en categorieën
-        return view('photos.index', compact('photos', 'categories'));
+        $categories = Category::all();
 
+        return view('photos.index', compact('photos', 'categories'));
     }
+
+
+
 
 //    public function restore($id)
 //    {
@@ -198,7 +193,7 @@ class PhotoController extends Controller
             // Als de gebruiker niet ingelogd is, doorsturen naar de login-pagina
             return redirect()->route('login')->with('message', 'You need to log in to like a photo.');
         }
-        
+
         $photo = Photo::findOrFail($photoId);
         $user = auth()->user();
 
@@ -225,5 +220,32 @@ class PhotoController extends Controller
 
         return redirect()->back()->with('message', 'Photo unliked successfully.');
     }
+
+    // app/Http/Controllers/PhotoController.php
+
+    public function toggleStatus($id)
+    {
+        // Zoek de foto op, inclusief de soft-deleted foto's
+        $photo = Photo::withTrashed()->findOrFail($id);
+
+        if ($photo->deleted_at) {
+            // Herstel de foto
+            $photo->restore();
+            $photo->status = 'active'; // Status naar actief zetten
+            $message = 'De foto is succesvol hersteld naar actief.'; // Succesbericht voor herstel
+        } else {
+            // Voer soft delete uit
+            $photo->delete();
+            $photo->status = 'inactive'; // Status naar inactief zetten
+            $message = 'De foto is succesvol gemarkeerd als inactief.'; // Succesbericht voor inactief
+        }
+
+        // Sla de status op
+        $photo->save(); // Dit zal geen effect hebben op de status na restore/delete; je hoeft het niet hier te doen.
+
+        // Redirect naar de admin foto index met een succesbericht
+        return redirect()->route('admin.photos-index')->with('success', $message);
+    }
+
 
 }
