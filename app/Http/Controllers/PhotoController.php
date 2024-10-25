@@ -15,16 +15,20 @@ class PhotoController extends Controller
      */
     public function index(Request $request): View
     {
+
+        //zoekbalk en category filter req
         $categoryId = $request->get('category');
         $searchTerm = $request->get('search');
 
-        $query = Photo::whereNull('deleted_at') // Alleen foto's zonder soft delete
-        ->where('status', 'active'); // Alleen actieve foto's
+        // fotos tonen die niet softdelete zijn en actieve status hebben
+        $query = Photo::whereNull('deleted_at')
+            ->where('status', 'active');
 
+        // foto's categorize als ze id hebben
         if ($categoryId) {
             $query->where('category_id', $categoryId);
         }
-
+// zoekbalk voor title en description
         if ($searchTerm) {
             $query->where(function ($query) use ($searchTerm) {
                 $query->where('title', 'LIKE', "%{$searchTerm}%")
@@ -32,9 +36,8 @@ class PhotoController extends Controller
             });
         }
 
-        // Haal de foto's op
+        // foto's en categories ophalen
         $photos = $query->get();
-
         $categories = Category::all();
 
         return view('photos.index', compact('photos', 'categories'));
@@ -59,10 +62,9 @@ class PhotoController extends Controller
     {
 
         $categories = Category::all();
-
         $user = auth()->user();
 
-        // Controleer of de gebruiker minstens 5 likes heeft geplaatst
+        // min 5 likes om een post te maken
         if ($user->likes()->count() < 5) {
             return redirect()->back()->with('message', 'You need to like at least 5 photos before creating a new post.');
         }
@@ -71,7 +73,7 @@ class PhotoController extends Controller
         //dd(vars: "Get Request van create");
         return view('photos.create', [
             'categories' => $categories
-        ]); //nieuwe view maken
+        ]);
     }
 
     /**
@@ -89,7 +91,7 @@ class PhotoController extends Controller
             'title.required' => 'You must fill in the title',
             'description.required' => 'You must fill in the description',
             'category_id.required' => 'You must choose a league',
-        ]); //valideren, komende les wel
+        ]); //valideren, komende les
 
 
         $photo->title = $request->input('title');
@@ -97,8 +99,6 @@ class PhotoController extends Controller
         $photo->category_id = $request->input('category_id');
         $photo->user_id = auth()->id();
 
-        // $photo->image ='default url';
-        //  $photo->user_id = auth()->user()->id;
 
         if ($request->hasFile('image')) {
             $nameOfFile = $request->file('image')->storePublicly('images', 'public');
@@ -184,6 +184,9 @@ class PhotoController extends Controller
             abort(403, 'you do not have permission to delete this post');
         }
         $photo->delete();
+        $photo->status = 'inactive'; // Zet de status naar 'inactive'
+        $photo->save(); // Sla de status op, alleen nodig als je het echt wilt bijwerken
+
         return redirect()->route('photos.index')->with('status', 'Photo deleted successfully');
     }
 
@@ -225,25 +228,29 @@ class PhotoController extends Controller
 
     public function toggleStatus($id)
     {
-        // Zoek de foto op, inclusief de soft-deleted foto's
+        // zoek alle foto's op, incl deleted
         $photo = Photo::withTrashed()->findOrFail($id);
 
+        // als foto deleted is
         if ($photo->deleted_at) {
-            // Herstel de foto
+            //die herstellen
             $photo->restore();
-            $photo->status = 'active'; // Status naar actief zetten
-            $message = 'De foto is succesvol hersteld naar actief.'; // Succesbericht voor herstel
+            //status naar actief zetten
+            $photo->status = 'active';
+            $message = 'De foto is succesvol hersteld naar actief.';
         } else {
-            // Voer soft delete uit
+            //als het bestaat
+            // foto deleten
             $photo->delete();
-            $photo->status = 'inactive'; // Status naar inactief zetten
-            $message = 'De foto is succesvol gemarkeerd als inactief.'; // Succesbericht voor inactief
+            // status naar inactief zetten
+            $photo->status = 'inactive';
+            $message = 'De foto is succesvol gemarkeerd als inactief.';
         }
 
-        // Sla de status op
-        $photo->save(); // Dit zal geen effect hebben op de status na restore/delete; je hoeft het niet hier te doen.
+        // status opslaan
+        $photo->save();
 
-        // Redirect naar de admin foto index met een succesbericht
+        // message tonen op admin photo index
         return redirect()->route('admin.photos-index')->with('success', $message);
     }
 

@@ -64,13 +64,15 @@ alles commit van afgelopen dagen + opdrachten
 
 25-10-24:
 
-- pic validatie
-- gebruiker kan eigen gegevens aanpassen?
+- gebruiker kan eigen gegevens aanpassen
+- status column toegevoegd
 - actief niet actief tonen aan een foto, similar to soft delete
+- status gaat hand en hand met soft deletes
 
 26-10-24
 
 - otap plaatsen
+- pic validatie
 - checken waar links bijgevoegd kunnen worden
 - owasp 1-2
 

@@ -1,7 +1,5 @@
 <h1>Admin Foto Beheer</h1>
 
-
-
 @if (session('success'))
     <div class="alert alert-success">
         {{ session('success') }}

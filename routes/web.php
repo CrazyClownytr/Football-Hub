@@ -60,7 +60,6 @@ Route::post('/photos/{photo}/like', [PhotoController::class, 'like'])->name('pho
 Route::delete('/photos/{photo}/unlike', [PhotoController::class, 'unlike'])->name('photos.unlike');
 
 // toggle status
-
 Route::post('/photos/{photo}/toggle-status', [PhotoController::class, 'toggleStatus'])->name('photos.toggle-status');
 
 
