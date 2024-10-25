@@ -70,7 +70,32 @@ alles commit van afgelopen dagen + opdrachten
 
 26-10-24
 
+- otap plaatsen
 - checken waar links bijgevoegd kunnen worden
+- owasp 1-2
+
+27-10-24
+
+- owasp 3-4
+- css home page
+
+28-10-24
+
+- owasp 5-6
+- css index
+
+29-10-24
+
+- owasp 7-8
+- css show
+
+30-10-24
+
+- owasp 9-10
+- css admin
+
+31-10-24
+otap
 
 [//]: # (index pagina is GET, filteren is GET, dingen ophalen is GET)
 

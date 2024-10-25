@@ -26,7 +26,7 @@
                     {{ $category->leagues }}
                 </option>
             @endforeach
-        </select>
+        </select>-
         <button type="submit">Click to Filter</button>
     </form>
 
