@@ -91,6 +91,7 @@ class PhotoController extends Controller
             'title.required' => 'You must fill in the title',
             'description.required' => 'You must fill in the description',
             'category_id.required' => 'You must choose a league',
+            'image' => 'You must upload a photo',
         ]); //valideren, komende les
 
 

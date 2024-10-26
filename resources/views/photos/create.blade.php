@@ -31,6 +31,11 @@
 
         <x-input-label for="image">Image</x-input-label>
         <input type="file" name="image" id="image" accept="image/*">
+        @error('image')
+        <span>
+         {{$message}}
+        </span>
+        @enderror
 
         {{--        <button type="submit">Submit</button>--}}
         <x-primary-button type="submit">Submit</x-primary-button>

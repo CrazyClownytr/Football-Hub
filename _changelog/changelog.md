@@ -71,13 +71,13 @@ alles commit van afgelopen dagen + opdrachten
 
 26-10-24
 
-- otap plaatsen
+- otap leren en misschien toevoegen
 - pic validatie
-- checken waar links bijgevoegd kunnen worden
 - owasp 1-2
 
 27-10-24
 
+- checken waar links bijgevoegd kunnen worden
 - owasp 3-4
 - css home page
 
