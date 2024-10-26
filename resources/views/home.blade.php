@@ -77,7 +77,7 @@
         </div>
 
         <p class="text-gray-300 text-center">
-            User Role: <span class="font-semibold">{{ auth()->check() ? auth()->user()->role : 'Not logged in' }}</span>
+            User Role: <span class="font-semibold">{{ auth()->check() ? auth()->user()->role : 'Guest' }}</span>
         </p>
 
         <div class="mt-10 text-center">
