@@ -1,5 +1,5 @@
 <x-layout>
-
+    <a href="{{ route('photos.index') }}">Back to All Uploads</a>
     <h1>{{ $photo->title }}</h1>
     <p>{{ $photo->description }}</p>
 
@@ -23,5 +23,5 @@
     <a href="{{ route('photos.edit', $photo) }}">Edit Your Post</a>.
 
     <a href="{{ route('photos.index') }}">Back to Photos List</a>
-    
+
 </x-layout>

@@ -1,6 +1,13 @@
 <x-layout>
     <h1>Photos</h1>
+    <a href="{{ route('home') }}">Back To Home Page</a>
     <a href="{{ route('photos.create') }}">Create photo</a>
+    @if(auth()->check() && auth()->user()->isAdmin())
+        <a href="{{ route('admin.photos-index') }}"
+           class="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition">
+            Admin Page
+        </a>
+    @endif
 
     {{--//non ingelogde gebruiker--}}
     @if(session('message'))

@@ -1,4 +1,6 @@
 <x-app-layout>
+    <a href="{{ route('photos.show', ['photo' => $photo->id]) }}">Back to Original Post</a>
+
     @if(auth()->id()=== $photo->user_id)
         <h1>Edit Photo</h1>
         <form action="{{ route('photos.update', $photo) }}" method="post" enctype="multipart/form-data">

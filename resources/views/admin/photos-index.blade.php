@@ -5,7 +5,7 @@
         {{ session('success') }}
     </div>
 @endif
-
+<a href="{{ route('admin.admin-index') }}">Back to Admin Home Page</a>
 <a href="{{ route('photos.create') }}">Maak Nieuwe Foto</a>
 <a href="{{route('photos.index')}}">View all Uploads</a>
 

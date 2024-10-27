@@ -1,4 +1,5 @@
 <x-app-layout>
+    <a href="{{ route('photos.index') }}">Back to All Uploads</a>
     <form action="{{route('photos.store')}}" method="post" enctype="multipart/form-data">
         @csrf
         {{--        <label for="name">Name</label>--}}

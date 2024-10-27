@@ -10,7 +10,13 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     {{ __("You're logged in!") }}
-                    {{--                    <a href="{{route('home')}}">Return to Home Page</a>--}}
+                    <a href="{{route('home')}}">Go to Home Page</a>
+                    @if(auth()->check() && auth()->user()->isAdmin())
+                        <a href="{{ route('admin.admin-index') }}"
+                           class="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition">
+                            Admin Page
+                        </a>
+                    @endif
                 </div>
             </div>
         </div>

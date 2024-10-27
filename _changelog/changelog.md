@@ -78,6 +78,10 @@ alles commit van afgelopen dagen + opdrachten
 27-10-24
 
 - checken waar links bijgevoegd kunnen worden
+- register bij login link done
+- back to homepage - index done
+- back to index - show+create
+- back to main admin page
 - owasp 3-4
 - css home page
 
