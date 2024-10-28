@@ -16,18 +16,18 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-//admins + users
+//users
 Route::middleware('auth')->group(function () {
     Route::resource('photos', PhotoController::class)->except(['index']);
     Route::get('/profile/', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
 // guests and users
 Route::get('/photos/{photo}', [PhotoController::class, 'show'])->name('photos.show');
 Route::get('/photos', [PhotoController::class, 'index'])->name('photos.index');
