@@ -1,19 +1,20 @@
 <x-app-layout>
-    <div class="container mx-auto py-12">
-        <div class="flex justify-between items-center mb-8">
+    <div class="container mx-auto py-12 bg-green-900 rounded-lg shadow-md">
+
+        <!-- Header Section -->
+        <div class="flex justify-between items-center mb-8 px-6">
             <div>
-                <h2 class="text-3xl font-bold text-white">Welcome to My Home Page</h2>
-                <p class="mt-2 text-gray-300">
-                    Explore the various photos and uploads on this platform.
+                <h2 class="text-3xl font-bold text-white">Welcome to My Football Hub</h2>
+                <p class="mt-2 text-gray-200">
+                    Dive into the world of football! Check out the latest uploads and photos.
                 </p>
             </div>
-
             <div class="flex items-center space-x-4">
                 @if(auth()->check())
                     <x-dropdown align="right" width="48">
                         <x-slot name="trigger">
                             <button
-                                class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none transition ease-in-out duration-150">
+                                class="inline-flex items-center px-3 py-2 border border-transparent text-sm font-medium rounded-md text-gray-300 bg-green-700 hover:text-white hover:bg-green-800 transition ease-in-out duration-150">
                                 {{ Auth::user()->name }}
                                 <svg class="fill-current h-4 w-4 ml-1" xmlns="http://www.w3.org/2000/svg"
                                      viewBox="0 0 20 20">
@@ -23,14 +24,15 @@
                                 </svg>
                             </button>
                         </x-slot>
-
                         <x-slot name="content">
-                            <x-dropdown-link :href="route('profile.edit')">
+                            <x-dropdown-link :href="route('profile.edit')"
+                                             class="text-green-700 hover:bg-green-800 hover:text-white">
                                 {{ __('Profile') }}
                             </x-dropdown-link>
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
                                 <x-dropdown-link :href="route('logout')"
+                                                 class="text-green-700 hover:bg-green-800 hover:text-white"
                                                  onclick="event.preventDefault();
                                                  this.closest('form').submit();">
                                     {{ __('Log Out') }}
@@ -40,54 +42,53 @@
                     </x-dropdown>
                 @else
                     <a href="{{ route('dashboard') }}"
-                       class="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition">
+                       class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition">
                         Log In
                     </a>
                 @endif
             </div>
         </div>
 
-        <div class="text-center">
-            <h2 class="text-3xl font-bold mb-4 text-white">Explore the Top 5 Football Leagues and the Champions
-                League!</h2>
-            <p class="mb-8 text-gray-300">
-                Discover exciting moments from recent uploads by our community. Like and share your favorites!
+        <!-- Intro Section -->
+        <div class="text-center px-6">
+            <h2 class="text-4xl font-bold mb-4 text-yellow-300">Explore Top Football Leagues!</h2>
+            <p class="mb-8 text-gray-200">
+                Discover exciting moments and highlights from recent uploads by our community.
             </p>
-            <p class="font-semibold text-red-500">
-                Note: To create a post, you must be logged in and have liked at least 5 posts.
+            <p class="font-semibold text-yellow-400">
+                * Note: To create a post, you must be logged in and have liked at least 5 posts.
             </p>
         </div>
 
         <!-- Action Buttons -->
-        <div class="flex justify-center space-x-4 mb-6">
+        <div class="flex justify-center space-x-4 mb-6 px-6">
             <a href="{{ route('photos.index') }}"
-               class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition">
+               class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
                 View All Uploads
             </a>
             <a href="{{ route('photos.create') }}"
-               class="px-4 py-2 bg-purple-500 text-white rounded-lg hover:bg-purple-600 transition">
+               class="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition">
                 Create Photo
             </a>
             @if(auth()->check() && auth()->user()->isAdmin())
                 <a href="{{ route('admin.admin-index') }}"
-                   class="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition">
+                   class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition">
                     Admin Page
                 </a>
             @endif
         </div>
 
-        <p class="text-gray-300 text-center">
-            User Role: <span class="font-semibold">{{ auth()->check() ? auth()->user()->role : 'Guest' }}</span>
+        <!-- User Role Info -->
+        <p class="text-gray-200 text-center mb-4">
+            User Role: <span
+                class="font-semibold text-yellow-300">{{ auth()->check() ? auth()->user()->role : 'Guest' }}</span>
         </p>
 
-        <div class="mt-10 text-center">
-            <p class="text-lg text-white">Hello, welcome to my platform where you can view and upload beautiful
-                photos.</p>
+        <!-- Welcome Message -->
+        <div class="mt-10 text-center px-6">
+            <p class="text-lg text-white">Hello and welcome! Browse and share your favorite football moments here.</p>
         </div>
+
     </div>
 
-    <!-- Footer -->
-    <footer class="bg-white dark:bg-gray-800 mt-12 py-4 text-center border-t border-gray-200 dark:border-gray-700">
-        <p class="text-gray-500 dark:text-gray-400">© 2024 Your Website. All rights reserved.</p>
-    </footer>
 </x-app-layout>

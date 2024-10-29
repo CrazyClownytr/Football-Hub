@@ -17,6 +17,6 @@ class AdminPolicy
 
     public function manage(User $user)
     {
-        return $user->isAdmin(); // Gebruik de isAdmin-methode
+        return $user->isAdmin();
     }
 }
