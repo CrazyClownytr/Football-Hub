@@ -1,23 +1,6 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>admin page</title>
-</head>
+<!-- resources/views/admin/admin-index.blade.php -->
 
-<nav>
-    <a href="{{route('photos.index')}}">View all Uploads</a>
-    <a href="{{route('dashboard')}}">Log in</a>
-    <a href="{{route('photos.create')}}">Create photo</a>
-    <a href="{{route('admin.photos-index')}}">View Detailed Uploads</a>
-</nav>
-<body>
-<h2>welcome to admin page</h2>
-<main>
-</main>
-</body>
-</html>
-
+<x-admin-layout>
+    <h2 class="text-3xl font-bold mb-4">Welcome to Admin Page</h2>
+    <p class="mb-4">Here you can manage uploads, view detailed information, and more.</p>
+</x-admin-layout>
