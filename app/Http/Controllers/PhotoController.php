@@ -64,16 +64,18 @@ class PhotoController extends Controller
         $categories = Category::all();
         $user = auth()->user();
 
-        // min 5 likes om een post te maken
-        if ($user->likes()->count() < 5) {
+        // min 5 likes om een post te maken, onbeperkt voor admin
+        if ($user->isAdmin() || $user->likes()->count() >= 5) {
+            return view('photos.create', [
+                'categories' => $categories
+            ]);
+        } else {
             return redirect()->back()->with('message', 'You need to like at least 5 photos before creating a new post.');
         }
 
 
         //dd(vars: "Get Request van create");
-        return view('photos.create', [
-            'categories' => $categories
-        ]);
+
     }
 
     /**
@@ -128,6 +130,7 @@ class PhotoController extends Controller
 
         if (auth()->id() !== $photo->user_id) {
             abort(403, 'you do not have permission to edit this post');
+
         }
 
         $categories = Category::all(); // Haal de categorieën op voor de dropdown

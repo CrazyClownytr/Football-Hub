@@ -15,7 +15,6 @@
         <div class="space-x-4">
             <a href="{{ route('photos.index') }}" class="hover:underline">View all Uploads</a>
             <a href="{{ route('dashboard') }}" class="hover:underline">Log in</a>
-            <a href="{{ route('photos.create') }}" class="hover:underline">Create Photo</a>
             <a href="{{ route('admin.photos-index') }}" class="hover:underline">Upload Overview</a>
         </div>
     </div>
