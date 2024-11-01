@@ -13,7 +13,7 @@ class Photo extends Model
 
     use softDeletes;
 
-    protected $fillable = ['title', 'description', 'path', 'status']; // Voeg hier andere velden toe die je wilt invullen.
+    protected $fillable = ['title', 'description', 'path', 'status'];
 
     protected static function boot()
     {
@@ -26,7 +26,7 @@ class Photo extends Model
             }
         });
     }
-    
+
     protected array $dates = ['deleted_at'];
 
     public function category(): BelongsTo
@@ -44,13 +44,6 @@ class Photo extends Model
         return $this->hasMany(Like::class);
     }
 
-
-
-//    protected $table = 'photos';
-//    protected $fillable = [
-//        'title',
-//        'description'
-//    ];
 }
 
 

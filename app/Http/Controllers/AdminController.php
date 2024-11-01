@@ -18,7 +18,7 @@ class AdminController extends Controller
         $this->authorize('manage', User::class);
 
         // Haal gebruikers op met paginering
-        $users = User::paginate(10); //  10 gebruikers per pagina?
+        $users = User::paginate(10); //  10 gebruikers per pagina
 
         return view('admin.admin-index', compact('users'));
     }

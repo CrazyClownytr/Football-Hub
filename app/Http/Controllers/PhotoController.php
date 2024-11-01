@@ -108,7 +108,7 @@ class PhotoController extends Controller
             $photo->image = $nameOfFile; // Opslaan van het pad naar de afbeelding in de database
         }
 
-        // Opslaan van het Photo-model in de database
+
         $photo->save();
         //terug gaan van waar je vandaan komt
         return redirect()->route('photos.index');
@@ -117,7 +117,7 @@ class PhotoController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Photo $photo): View //enkelvoud, check chatgpt om te connecten met view
+    public function show(Photo $photo): View //enkelvoud
     {
         return view('photos.show', compact('photo'));
     }
